@@ -105,7 +105,7 @@ app.post('/upload-report', upload.single('file'), async (req, res) => {
     const key = `team-${teamId}/pending/${Date.now()}-${file.originalname}`;
     
     await s3.upload({
-      Bucket: 'team-reports-storage-YOUR_NAME', // Replace with your bucket name
+      Bucket: 'team-reports-storage-abir', // Replace with your bucket name
       Key: key,
       Body: fileContent
     }).promise();
@@ -137,8 +137,15 @@ app.get('/teams/:teamId/reports', async (req, res) => {
   res.json(result.rows);
 });
 
+// Health check for ALB
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });
+});
+
+
 // Start server
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+

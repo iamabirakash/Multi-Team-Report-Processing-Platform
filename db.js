@@ -4,7 +4,7 @@ const pool = new Pool({
   host: 'teamreports-db.c3yg4w2imela.eu-north-1.rds.amazonaws.com',
   user: 'postgres',
   password: 'abirakash',
-  database: 'abirakash',
+  database: 'teamreports',     // ← CHANGE THIS LINE
   port: 5432,
   ssl: { rejectUnauthorized: false }
 });
